@@ -1,5 +1,8 @@
 # angular-firebase-tutorial
 
+![alt tag](app/assets/images/AngularJS-large.png)
+![alt tag](app/assets/images/firebase_logo.png)
+
 A sample app for working with angularJS and using Firebase for the backend.
 
 # angular-seed — the seed for AngularJS apps
