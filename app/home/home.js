@@ -9,9 +9,22 @@ angular.module('myApp.home', ['ngRoute', 'firebase'])
         controller: 'HomeCtrl'
     });
 }])
+
+.service('CommonProp', function() {
+    var user = '';
+ 
+    return {
+        getUser: function() {
+            return user;
+        },
+        setUser: function(value) {
+            user = value;
+        }
+    };
+})
  
 // Home controller
-.controller('HomeCtrl', ['$scope','$location','$firebaseAuth',function($scope,$location,$firebaseAuth) {
+.controller('HomeCtrl', ['$scope','$location','CommonProp','$firebaseAuth',function($scope,$location,CommonProp,$firebaseAuth) {
 	var firebaseObj = new Firebase("https://angbase-tutorial.firebaseio.com");
     var loginObj = $firebaseAuth(firebaseObj);
 	
@@ -26,7 +39,9 @@ angular.module('myApp.home', ['ngRoute', 'firebase'])
         })
         .then(function(user) {
             // Success callback
+            console.log(user);
             console.log('Authentication successful');
+            CommonProp.setUser(user.password.email);
             $location.path('/welcome');
         }, function(error) {
             // Failure callback
