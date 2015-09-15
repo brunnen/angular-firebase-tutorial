@@ -11,6 +11,10 @@ angular.module('myApp.register', ['ngRoute'])
 }])
  
 // Register controller
-.controller('RegisterCtrl', [function() {
- 
+.controller('RegisterCtrl', ['$scope', function($scope) {
+	$scope.signUp = function() {
+	    if (!$scope.regForm.$invalid) {
+	        console.log('Valid form submission');
+	    }
+	};
 }]);
