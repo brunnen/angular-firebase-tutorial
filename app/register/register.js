@@ -11,7 +11,7 @@ angular.module('myApp.register', ['ngRoute', 'firebase'])
 }])
  
 // Register controller
-.controller('RegisterCtrl', ['$scope', '$firebaseAuth', function($scope, $firebaseAuth) {
+.controller('RegisterCtrl', ['$scope', '$location', '$firebaseAuth', function($scope, $location, $firebaseAuth) {
 	var firebaseObj = new Firebase("https://angbase-tutorial.firebaseio.com");
 	var auth = $firebaseAuth(firebaseObj);
 
@@ -24,9 +24,12 @@ angular.module('myApp.register', ['ngRoute', 'firebase'])
                     .then(function() {
                         // do things if success
                         console.log('User creation success');
+                        $location.path('/home');
                     }, function(error) {
                         // do things if failure
                         console.log(error);
+	                    $scope.regError = true;
+	                    $scope.regErrorMessage = error.message;
                     });
             }
 	    }
