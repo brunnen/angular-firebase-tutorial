@@ -9,7 +9,7 @@ angular.module('myApp.addPost', ['ngRoute'])
     });
 }])
  
-.controller('AddPostCtrl', ['$scope','$firebase','CommonProp', function($scope,$firebase,CommonProp) {
+.controller('AddPostCtrl', ['$scope','$firebase','CommonProp','$location', function($scope,$firebase,CommonProp,$location) {
 	var firebaseObj = new Firebase("https://angbase-tutorial.firebaseio.com/Articles");
     var fb = $firebase(firebaseObj);
 
@@ -23,6 +23,7 @@ angular.module('myApp.addPost', ['ngRoute'])
         	emailId: CommonProp.getUser()
 		}).then(function(ref) {
 		    console.log(ref);
+		    $location.path('/welcome');
 		}, function(error) {
 		    console.log("Error:", error);
 		});
